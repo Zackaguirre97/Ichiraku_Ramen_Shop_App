@@ -1,0 +1,54 @@
+id|name|description|basePrice|ingredientCategory
+ING001|Small Bowl|Small ramen bowl size|0.00|BOWL_SIZE
+ING002|Medium Bowl|Medium ramen bowl size|0.50|BOWL_SIZE
+ING003|Large Bowl|Large ramen bowl size|1.00|BOWL_SIZE
+ING004|Extra Large Bowl|Extra large ramen bowl size|1.50|BOWL_SIZE
+ING005|Chicken Broth|Savory chicken stock|1.75|BROTH
+ING006|Pork Broth|Rich pork stock|2.00|BROTH
+ING007|Miso Broth|Umami-rich miso base|2.00|BROTH
+ING008|Fish Broth|Savory fish stock|2.00|BROTH
+ING009|Ramen Noodles|Fresh wheat ramen noodles|1.50|NOODLE
+ING010|Egg Noodles|Fresh egg-enriched noodles|1.75|NOODLE
+ING011|Garlic|Fresh garlic cloves|0.30|SPICE
+ING012|Ginger|Fresh sliced ginger|0.40|SPICE
+ING013|Chili Flakes|Spicy red chili flakes|0.40|SPICE
+ING014|Pepper|Ground black pepper|0.10|SPICE
+ING015|Salt|Fine sea salt|0.05|SPICE
+ING016|Chashu Pork|Tender braised pork belly|4.50|PROTEIN
+ING017|Soft-Boiled Egg|Marinated egg with runny yolk|1.25|PROTEIN
+ING018|Shredded Chicken|Cooked shredded chicken|2.50|PROTEIN
+ING019|Tofu|Silken tofu block|2.00|PROTEIN
+ING020|Narutomaki|Fish cake with pink swirl|1.00|PROTEIN
+ING021|Bonito Flakes|Dried shaved bonito fish|1.25|PROTEIN
+ING022|Nori|Roasted seaweed sheets|0.50|TOPPING
+ING023|Menma|Fermented bamboo shoots|0.75|TOPPING
+ING024|Green Onion|Chopped fresh green onions|0.25|TOPPING
+ING025|Spinach|Fresh spinach leaves|0.60|TOPPING
+ING026|Bean Sprouts|Crunchy soybean sprouts|0.40|TOPPING
+ING027|Corn|Sweet corn kernels|0.35|TOPPING
+ING028|Bok Choy|Fresh Chinese cabbage|0.80|TOPPING
+ING029|Carrot|Julienned carrot strips|0.50|TOPPING
+ING030|Cabbage|Shredded green cabbage|0.50|TOPPING
+ING031|Leek|Sliced fresh leek|0.45|TOPPING
+ING032|Pickled Ginger|Sliced pink pickled ginger|0.70|TOPPING
+ING033|Nira|Garlic chives|0.50|TOPPING
+ING034|Sesame Seeds|Toasted sesame seeds|0.20|TOPPING
+ING035|Dried Seaweed Mix|Mix of nori and wakame|0.80|TOPPING
+ING036|Shiitake Mushrooms|Fresh shiitake mushrooms|1.00|TOPPING
+ING037|Mushroom Powder|Dried mushroom seasoning|0.60|TOPPING
+ING038|Soy Sauce|Fermented soy sauce|1.50|SAUCE
+ING039|Miso Paste|Traditional Japanese miso|2.50|SAUCE
+ING040|Chili Oil|Spicy red chili oil|0.75|SAUCE
+ING041|Sesame Oil|Toasted sesame oil|0.90|SAUCE
+ING042|Sesame Paste|Creamy roasted sesame paste|0.90|SAUCE
+ING043|Shoyu|Soy sauce based seasoning|1.50|SAUCE
+ING044|Sake|Cooking sake|1.25|SAUCE
+ING045|Mirin|Sweet Japanese rice wine|1.50|SAUCE
+ING046|Sugar|Granulated sugar|0.05|SAUCE
+ING047|Butter|Unsalted butter|0.75|SAUCE
+ING048|Bamboo Shoot Oil|Infused flavor oil|0.60|SAUCE
+ING049|Ramen Soup Base|Concentrated seasoning base|2.00|SAUCE
+ING050|Mushroom Broth|Umami-rich mushroom stock|1.50|BROTH
+ING051|Seaweed Powder|Ground nori seasoning|0.50|SPICE
+ING052|Extra Toppings|Customer choice extra topping|0.50|TOPPING
+ING053|Special Sauce|Chef’s special seasoning sauce|1.00|SAUCE

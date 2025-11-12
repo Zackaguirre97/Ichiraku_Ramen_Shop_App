@@ -1,0 +1,10 @@
+id|name|description|bowlSizeId|brothId|noodleId|spiceId|extraIngredientIds
+RAM001|Shoyu Ramen|Classic soy sauce ramen|ING002|ING007|ING009|ING011|
+RAM002|Miso Ramen|Rich miso-based ramen|ING003|ING008|ING009|ING012|
+RAM003|Spicy Miso Ramen|Miso ramen with extra chili|ING003|ING008|ING009|ING013|ING035
+RAM004|Tonkotsu Ramen|Creamy pork broth ramen|ING004|ING006|ING010|ING011|ING016
+RAM005|Vegetarian Ramen|Broth with vegetables, no meat|ING002|ING005|ING010|ING012|ING025,ING024,ING028
+RAM006|Spicy Tonkotsu Ramen|Tonkotsu ramen with chili oil|ING004|ING006|ING010|ING013|ING035,ING040
+RAM007|Shoyu Chashu Ramen|Shoyu ramen with extra chashu pork|ING003|ING007|ING009|ING011|ING016
+RAM008|Miso Tofu Ramen|Miso ramen with tofu|ING002|ING008|ING009|ING012|ING019
+RAM009|Seafood Ramen|Fish broth ramen with seafood toppings|ING003|ING008|ING009|ING011|ING020,ING048

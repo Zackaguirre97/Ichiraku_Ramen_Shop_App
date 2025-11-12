@@ -1,0 +1,21 @@
+id|name|description|basePrice|itemCategory
+DRK001|Green Tea|Refreshing hot green tea|2.00|DRINK
+DRK002|Ramune|Japanese soda|2.50|DRINK
+DRK003|Cold Oolong Tea|Iced oolong tea|2.25|DRINK
+DRK004|Sake|Warm Japanese rice wine|4.50|DRINK
+DRK005|Milk Tea|Sweet milk tea with tapioca pearls|3.00|DRINK
+DRK006|Iced Coffee|Cold brewed coffee|2.75|DRINK
+APP001|Gyoza|Pan-fried pork dumplings (6 pieces)|4.50|APPETIZER
+APP002|Edamame|Steamed soybeans with salt|3.00|APPETIZER
+APP003|Karaage|Japanese fried chicken|5.50|APPETIZER
+APP004|Takoyaki|Octopus balls with sauce|4.75|APPETIZER
+APP005|Agedashi Tofu|Fried tofu in light broth|4.25|APPETIZER
+APP006|Seaweed Salad|Fresh seaweed salad with sesame dressing|3.50|APPETIZER
+APP007|Yakitori|Grilled chicken skewers|5.00|APPETIZER
+DES001|Mochi Ice Cream|Green tea flavored mochi|3.25|DESSERT
+DES002|Dorayaki|Red bean pancake sandwich|3.50|DESSERT
+DES003|Matcha Pudding|Creamy green tea pudding|3.75|DESSERT
+DES004|Anmitsu|Japanese agar jelly with fruit and syrup|4.00|DESSERT
+DES005|Taiyaki|Fish-shaped cake with sweet filling|3.50|DESSERT
+DES006|Daifuku|Sweet mochi stuffed with red bean|3.25|DESSERT
+DES007|Kakigori|Shaved ice with flavored syrup|3.75|DESSERT
