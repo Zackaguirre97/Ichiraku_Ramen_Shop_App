@@ -69,6 +69,7 @@ public class ConsoleCartScreen {
             System.out.println("2. Update item quantity");
             System.out.println("3. Checkout");
             System.out.println("4. Return to Main Menu");
+            System.out.println("5. Continue Ordering"); // <-- new option
             System.out.print("Select an option: ");
 
             String choice = sc.nextLine();
@@ -84,9 +85,14 @@ public class ConsoleCartScreen {
                         System.out.println("Cart is empty, cannot checkout.");
                     }
                 }
-                case "4" -> inCartMenu = false;
+                case "4" -> inCartMenu = false; // return to Main Menu
+                case "5" -> {
+                    controller.showOrderScreen(); // <-- directly go to Order Menu
+                    inCartMenu = false; // leave Cart menu
+                }
                 default -> System.out.println("Invalid option, try again.");
             }
+
         }
     }
 
