@@ -43,6 +43,24 @@ public class DataManager {
         recipes = recipeHandler.load();
         itemHandler = new CsvItemDataHandler(ITEM_CSV_PATH);
         items = itemHandler.load();
+        items = itemHandler.load();
+
+        // Build type-specific lists
+        drinks = items.stream()
+                .filter(i -> i instanceof Drink)
+                .map(i -> (Drink)i)
+                .toList();
+
+        appetizers = items.stream()
+                .filter(i -> i instanceof Appetizer)
+                .map(i -> (Appetizer)i)
+                .toList();
+
+        desserts = items.stream()
+                .filter(i -> i instanceof Dessert)
+                .map(i -> (Dessert)i)
+                .toList();
+
         // items = mergeItems(ingredients, recipes); // optional later
     }
 
@@ -75,6 +93,18 @@ public class DataManager {
 
     public List<Item> getAllItems() {
         return items;
+    }
+
+    public List<Appetizer> getAllAppetizers() {
+        return appetizers;
+    }
+
+    public List<Drink> getAllDrinks() {
+        return drinks;
+    }
+
+    public List<Dessert> getAllDesserts() {
+        return desserts;
     }
 
     // --- Future Expansion ---

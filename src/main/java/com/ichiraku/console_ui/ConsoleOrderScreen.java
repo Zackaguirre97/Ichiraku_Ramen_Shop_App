@@ -24,7 +24,7 @@ public class ConsoleOrderScreen {
             System.out.println("\n=== 🍜 Order Menu ===");
             System.out.println("1. View Prebuilt Ramen Recipes");
             System.out.println("2. Build Your Own Ramen");
-            System.out.println("3. Browse Other Items");
+            System.out.println("3. Browse Other Items"); // This will likely update when you add th new methods.
             System.out.println("4. Return to Main Menu");
             System.out.print("Choose an option: ");
             String choice = sc.nextLine();
@@ -32,7 +32,7 @@ public class ConsoleOrderScreen {
             switch (choice) {
                 case "1" -> showRamenMenu();
                 case "2" -> controller.showBuildYourOwnRamen();
-                case "3" -> showItemMenu();
+                case "3" -> showItemMenu(); // This will likely update when you add th new methods.
                 case "4" -> ordering = false;
                 default -> System.out.println("Invalid choice, try again.");
             }
@@ -77,6 +77,7 @@ public class ConsoleOrderScreen {
         }
     }
 
+    // This needs to be copied and made into specific methods for Apps, Drinks, and Desserts.
     public void showItemMenu() {
         Scanner sc = controller.getScanner();
         List<Item> items = controller.getDataManager().getAllItems();
