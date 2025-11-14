@@ -80,8 +80,11 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction[" + transactionId + "] $" + totalAmount
-                + " | " + billingInfo.getPaymentSummary();
+        return "Transaction [" + transactionId + "]\n"
+                + billingInfo.getCustomer().getName() + " | "
+                + billingInfo.getPaymentSummary() + "\n"
+                + "Total: $" + totalAmount;
     }
+
 }
 

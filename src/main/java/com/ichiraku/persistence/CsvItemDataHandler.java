@@ -27,7 +27,7 @@ public class CsvItemDataHandler {
                 if (item != null) items.add(item);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error: IO exception encountered!");
         }
         return items;
     }
@@ -38,7 +38,7 @@ public class CsvItemDataHandler {
             bw.write(csvLine);
             bw.newLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error: IO exception encountered!");
         }
     }
 
@@ -51,7 +51,7 @@ public class CsvItemDataHandler {
         try {
             Files.write(Paths.get(filePath), csvLines, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error: IO exception encountered!");
         }
     }
 
@@ -73,7 +73,7 @@ public class CsvItemDataHandler {
                 default -> { return null; } // Ramen not included here
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error: EXCEPTION exception encountered!");
             return null;
         }
     }

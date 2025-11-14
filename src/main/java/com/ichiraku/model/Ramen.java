@@ -87,6 +87,24 @@ public class Ramen extends Item {
                 "] $" + calculatePrice();
     }
 
+    public String getIngredientSummary() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("• Bowl Size: ").append(bowlSize.getName()).append("\n");
+        sb.append("• Broth: ").append(baseBroth.getName()).append("\n");
+        sb.append("• Noodles: ").append(noodleType.getName()).append("\n");
+        sb.append("• Spice Level: ").append(spiceLevel.getName()).append("\n");
+
+        if (!customIngredients.isEmpty()) {
+            sb.append("• Extras:\n");
+            for (Ingredient ing : customIngredients) {
+                sb.append("   - ").append(ing.getName()).append("\n");
+            }
+        }
+
+        return sb.toString();
+    }
+
     /*
      * *** Nested Builder Class ***
      * */

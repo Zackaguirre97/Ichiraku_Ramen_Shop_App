@@ -3,6 +3,7 @@ package com.ichiraku.model;
 import com.ichiraku.enums.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class BillingInfo {
     // --- Fields / Attributes ---
@@ -25,18 +26,33 @@ public class BillingInfo {
     }
 
     // --- Methods ---
-    public BigDecimal getAmountPaid() {
-        return amountPaid;
-    }
 
+    public String getBillingId() {
+        return billingId;
+    }
     public Customer getCustomer() {
         return customer;
     }
+    public PaymentType getPaymentMethod() {
+        return paymentMethod;
+    }
+    public BigDecimal getAmountPaid() {
+        return amountPaid;
+    }
+    public LocalDateTime getTransactionDate() {
+        return transactionDate;
+    }
+    public String getNotes() {
+        return notes;
+    }
 
     public String getPaymentSummary() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDate = transactionDate.format(formatter);
+
         return "Paid $" + amountPaid
                 + " via " + paymentMethod
-                + " on " + transactionDate;
+                + " on " + formattedDate;
     }
 
     @Override
