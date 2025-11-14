@@ -117,5 +117,131 @@ public class ConsoleBuildYourOwnRamenScreen {
         System.out.println("Invalid choice. Skipping selection.");
         return null;
     }
+
+    public void editRamenDetails(Cart cart, Ramen ramen, Scanner sc) {
+        DataManager dataManager = controller.getDataManager();
+        List<Ingredient> allIngredients = dataManager.getAllIngredients();
+
+        // Track extras separately
+        List<Ingredient> extras = new ArrayList<>(ramen.getCustomIngredients());
+
+        // Track current selections for bowl, broth, noodles, spice
+        Ingredient currentBowl = ramen.getBowlSize();
+        Ingredient currentBroth = ramen.getBaseBroth();
+        Ingredient currentNoodle = ramen.getNoodleType();
+        Ingredient currentSpice = ramen.getSpiceLevel();
+
+        boolean editing = true;
+
+        while (editing) {
+            System.out.println("\n=== Editing: " + ramen.getName() + " ===");
+            System.out.println("1. Bowl Size: " + currentBowl.getName());
+            System.out.println("2. Broth: " + currentBroth.getName());
+            System.out.println("3. Noodles: " + currentNoodle.getName());
+            System.out.println("4. Spice Level: " + currentSpice.getName());
+            System.out.println("5. Extras:");
+            if (extras.isEmpty()) {
+                System.out.println("   (none)");
+            } else {
+                for (Ingredient ing : extras) {
+                    System.out.println("   - " + ing.getName());
+                }
+            }
+            System.out.println("6. Finish editing");
+            System.out.print("Select an option to edit: ");
+
+            String choice = sc.nextLine();
+
+            switch (choice) {
+                case "1" -> {
+                    Ingredient newBowl = promptForIngredient(sc, allIngredients, IngredientCategory.BOWL_SIZE, "Choose a bowl size:");
+                    if (newBowl != null) currentBowl = newBowl;
+                }
+                case "2" -> {
+                    Ingredient newBroth = promptForIngredient(sc, allIngredients, IngredientCategory.BROTH, "Choose a broth:");
+                    if (newBroth != null) currentBroth = newBroth;
+                }
+                case "3" -> {
+                    Ingredient newNoodle = promptForIngredient(sc, allIngredients, IngredientCategory.NOODLE, "Choose a noodle type:");
+                    if (newNoodle != null) currentNoodle = newNoodle;
+                }
+                case "4" -> {
+                    Ingredient newSpice = promptForIngredient(sc, allIngredients, IngredientCategory.SPICE_LEVEL, "Choose spice level:");
+                    if (newSpice != null) currentSpice = newSpice;
+                }
+                case "5" -> editExtras(extras, sc, allIngredients);
+                case "6" -> editing = false;
+                default -> System.out.println("Invalid choice, try again.");
+            }
+        }
+
+        // Build updated Ramen using Builder
+        Ramen updatedRamen = new Ramen.Builder(ramen.getId(), ramen.getName(), ramen.getDescription())
+                .setBowlSize(currentBowl)
+                .setBroth(currentBroth)
+                .setNoodle(currentNoodle)
+                .setSpice(currentSpice)
+                .addCustomIngredients(extras)
+                .build();
+
+        // Replace old Ramen in cart while keeping quantity
+        int quantity = cart.getItems().get(ramen);
+        cart.removeItem(ramen);
+        cart.addItem(updatedRamen, quantity);
+
+        System.out.println("✅ Ramen updated successfully!");
+    }
+
+    private void editExtras(List<Ingredient> extras, Scanner sc, List<Ingredient> allIngredients) {
+        boolean editingExtras = true;
+
+        while (editingExtras) {
+            System.out.println("\n=== Extras Editing ===");
+            if (extras.isEmpty()) {
+                System.out.println("(none)");
+            } else {
+                for (int i = 0; i < extras.size(); i++) {
+                    System.out.printf("%d. %s\n", i + 1, extras.get(i).getName());
+                }
+            }
+            System.out.println("Options:");
+            System.out.println("A. Add extra");
+            System.out.println("R. Remove extra");
+            System.out.println("F. Finish editing extras");
+            System.out.print("Choice: ");
+
+            String choice = sc.nextLine().toUpperCase();
+            switch (choice) {
+                case "A" -> {
+                    Ingredient extra = promptForIngredient(sc, allIngredients, null, "Select an extra ingredient:");
+                    if (extra != null && !extras.contains(extra)) {
+                        extras.add(extra);
+                        System.out.println("✅ Added " + extra.getName());
+                    } else {
+                        System.out.println("Ingredient already added or invalid.");
+                    }
+                }
+                case "R" -> {
+                    if (extras.isEmpty()) {
+                        System.out.println("No extras to remove.");
+                        break;
+                    }
+                    System.out.print("Enter number to remove: ");
+                    try {
+                        int idx = Integer.parseInt(sc.nextLine()) - 1;
+                        if (idx >= 0 && idx < extras.size()) {
+                            System.out.println("✅ Removed " + extras.remove(idx).getName());
+                        } else {
+                            System.out.println("Invalid selection.");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input.");
+                    }
+                }
+                case "F" -> editingExtras = false;
+                default -> System.out.println("Invalid choice.");
+            }
+        }
+    }
 }
 

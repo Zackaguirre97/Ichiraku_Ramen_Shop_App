@@ -1,6 +1,8 @@
 package com.ichiraku.console_ui;
 
 import com.ichiraku.controller.ConsoleController;
+import com.ichiraku.controller.DataManager;
+import com.ichiraku.enums.IngredientCategory;
 import com.ichiraku.model.*;
 
 import java.math.BigDecimal;
@@ -37,26 +39,11 @@ public class ConsoleCartScreen {
                             .multiply(BigDecimal.valueOf(quantity))
                             .setScale(2, java.math.RoundingMode.HALF_UP);
 
-                    // Main item line
-                    System.out.printf("%d. %s x%d - $%s\n",
-                            index, item.getName(), quantity, totalPrice);
+                    System.out.printf("%d. %s x%d - $%s\n", index, item.getName(), quantity, totalPrice);
 
-                    // === NEW: Ingredient breakdown for Ramen ===
                     if (item instanceof Ramen ramen) {
-                        System.out.println("   Ingredients:");
-                        System.out.println("      • Bowl Size: " + ramen.getBowlSize().getName());
-                        System.out.println("      • Broth: " + ramen.getBaseBroth().getName());
-                        System.out.println("      • Noodles: " + ramen.getNoodleType().getName());
-                        System.out.println("      • Spice Level: " + ramen.getSpiceLevel().getName());
-
-                        if (!ramen.getCustomIngredients().isEmpty()) {
-                            System.out.println("      • Extras:");
-                            for (Ingredient ing : ramen.getCustomIngredients()) {
-                                System.out.println("          - " + ing.getName());
-                            }
-                        }
+                        System.out.println(ramen.getIngredientSummary());
                     }
-
                     index++;
                 }
 
@@ -67,9 +54,10 @@ public class ConsoleCartScreen {
             System.out.println("\nOptions:");
             System.out.println("1. Remove item");
             System.out.println("2. Update item quantity");
-            System.out.println("3. Checkout");
-            System.out.println("4. Return to Main Menu");
-            System.out.println("5. Continue Ordering"); // <-- new option
+            System.out.println("3. Edit Ramen item");
+            System.out.println("4. Checkout");
+            System.out.println("5. Continue Ordering"); // go back to Order Menu
+            System.out.println("6. Return to Main Menu");
             System.out.print("Select an option: ");
 
             String choice = sc.nextLine();
@@ -78,21 +66,34 @@ public class ConsoleCartScreen {
                 case "1" -> removeItem(cart, sc);
                 case "2" -> updateQuantity(cart, sc);
                 case "3" -> {
+                    if (cart.getItems().isEmpty()) {
+                        System.out.println("Cart is empty, nothing to edit.");
+                        break;
+                    }
+                    Ramen selected = selectRamenFromCart(cart, sc);
+                    ConsoleBuildYourOwnRamenScreen byorScreen = new ConsoleBuildYourOwnRamenScreen(controller);
+                    if (selected != null) {
+                        byorScreen.editRamenDetails(cart, selected, sc);
+                    }
+                    else {
+                        System.out.println("No Ramen selected or invalid choice.");
+                    }
+                }
+                case "4" -> {
                     if (!cart.getItems().isEmpty()) {
                         controller.showCheckoutScreen();
-                        inCartMenu = false; // leave after checkout
+                        inCartMenu = false;
                     } else {
                         System.out.println("Cart is empty, cannot checkout.");
                     }
                 }
-                case "4" -> inCartMenu = false; // return to Main Menu
                 case "5" -> {
-                    controller.showOrderScreen(); // <-- directly go to Order Menu
-                    inCartMenu = false; // leave Cart menu
+                    controller.showOrderScreen();
+                    inCartMenu = false;
                 }
+                case "6" -> inCartMenu = false;
                 default -> System.out.println("Invalid option, try again.");
             }
-
         }
     }
 
@@ -144,5 +145,38 @@ public class ConsoleCartScreen {
         } catch (NumberFormatException e) {
             System.out.println("Please enter a valid number.");
         }
+    }
+
+    /**
+     * Helper method to select a Ramen item from the cart.
+     * Returns null if no Ramen items are in the cart or user cancels.
+     */
+    private Ramen selectRamenFromCart(Cart cart, Scanner sc) {
+        List<Ramen> ramens = cart.getItems().keySet().stream()
+                .filter(item -> item instanceof Ramen)
+                .map(item -> (Ramen) item)
+                .toList();
+
+        if (ramens.isEmpty()) {
+            System.out.println("No Ramen items in the cart.");
+            return null;
+        }
+
+        System.out.println("\nSelect a Ramen to edit:");
+        for (int i = 0; i < ramens.size(); i++) {
+            Ramen r = ramens.get(i);
+            System.out.printf("%d. %s\n", i + 1, r.getName());
+        }
+        System.out.print("Enter number (or 0 to cancel): ");
+
+        try {
+            int selection = Integer.parseInt(sc.nextLine());
+            if (selection == 0) return null;
+            if (selection >= 1 && selection <= ramens.size()) {
+                return ramens.get(selection - 1);
+            }
+        } catch (NumberFormatException ignored) { }
+        System.out.println("Invalid choice.");
+        return null;
     }
 }
